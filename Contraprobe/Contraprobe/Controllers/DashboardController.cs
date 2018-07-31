@@ -6,8 +6,9 @@ using System.Web.Mvc;
 
 namespace Contraprobe.Controllers
 {
-    public class HomeController : Controller
+    public class DashboardController : Controller
     {
+        // GET: Dasboard
         public ActionResult Index()
         {
             return View();
