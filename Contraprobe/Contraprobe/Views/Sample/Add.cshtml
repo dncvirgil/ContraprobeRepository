@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Add";
+    var listaProduse = (List<SelectListItem>)ViewBag.Produse;
 }
 
 <h2>Adaugare proba noua</h2>
@@ -11,35 +12,28 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-     @*dropdown for Product*@
-    <div class="form-group">
-        @Html.LabelFor(model => model.Product, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*@Html.EditorFor(model => model.Product, new { htmlAttributes = new { @class = "form-control" } })*@
+        @*dropdown for Product*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Product, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Product, new { htmlAttributes = new { @class = "form-control" } })*@
 
-
-            @*@Html.DropDownListFor(model => model.Product, new List<SelectListItem>
-                 {
-                    new SelectListItem{ Text="Injectabil", Value = "Injectabil" },
-                    new SelectListItem{ Text="Tablete", Value = "Tablete" },
-                    new SelectListItem{ Text="Capsule", Value = "Capsule" }
-                 },
-                 new { @class = "btn btn-default dropdown-toggle col-md-10" }) @*clasa luata de pe bootstrap*@
-            @*@Html.ValidationMessageFor(model => model.Product, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.Product, listaProduse, new { @class = "btn btn-default dropdown-toggle col-md-10" }) @*clasa luata de pe bootstrap*@
+                @Html.ValidationMessageFor(model => model.Product, "", new { @class = "text-danger" })
             </div>
         </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Series, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Series, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Series, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Series, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Series, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Series, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProductionDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -50,7 +44,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control", @placeholder = $"ex: {DateTime.Now.ToShortDateString()}" } })
                 @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
@@ -79,7 +73,7 @@
             </div>
         </div>
     </div>
-    }
+}
 
     <div>
         @Html.ActionLink("Vizualizare lista", "List")

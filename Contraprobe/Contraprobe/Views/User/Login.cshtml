@@ -36,6 +36,18 @@
     </div>*@
    <div class="container body-content">
        <h2>@ViewBag.Title</h2>
+
+
+       @*<img src="~/Content/Images/pills.jpg" alt="Eroare la incarcare poza" class="img-rounded list">*@
+
+       <picture>
+           <img src="~/Content/Images/pills.jpg" alt="Flowers" class="img-rounded list" style="width:20%; height:20%; margin-left: auto;
+    margin-right: auto; display: block;">
+       </picture>
+
+
+
+
        <div class="row">
 
            <div class="col-md-3">
@@ -76,14 +88,16 @@
 
 
 
-                           <div class="form-group">
+                           @*<div class="form-group">
                                <div class="col-md-offset-2 col-md-10">
                                    <div class="checkbox">
                                        @Html.CheckBoxFor(m => m.RememberMe)
                                        @Html.LabelFor(m => m.RememberMe)
                                    </div>
                                </div>
-                           </div>
+                           </div>*@
+
+
                            <div class="form-group">
                                <div class="col-md-offset-2 col-md-10">
                                    <input type="submit" value="Log in" class="btn btn-default" />

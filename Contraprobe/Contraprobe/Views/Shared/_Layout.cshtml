@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body style="height:100%">
     <div class="navbar navbar-inverse navbar-fixed-top", style="background-color: indianred">
         <div class="container">
             <div class="navbar-header">
@@ -56,7 +56,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        </div>
         <hr />
+    <div style="position: fixed; bottom: 0; left:20%;">
         <footer>
             <p>&copy; @DateTime.Now.Year - Gestiune contraprobe</p>
         </footer>

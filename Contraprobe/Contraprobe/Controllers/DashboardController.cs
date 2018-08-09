@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contraprobe.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,8 @@ namespace Contraprobe.Controllers
         // GET: Dasboard
         public ActionResult Index()
         {
-            return View();
+            List<SampleModel> listSamples = new List<SampleModel>();
+            return View(listSamples);
         }
     }
 }

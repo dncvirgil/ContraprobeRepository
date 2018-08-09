@@ -36,8 +36,12 @@ namespace Contraprobe.Models
         [Display(Name = "Locatie")]
         public string Location { get; set; }
 
+        [Display(Name = "Data adaugarii")]
         public DateTime CreationDate { get; set; }
 
+        [Display(Name = "Adaugat de")]
         public string UserName { get; set; }
+
+        public string Status { get; set; }
     }
 }

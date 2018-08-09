@@ -12,6 +12,19 @@ namespace Contraprobe.Controllers
         // GET: Drug
         public ActionResult Add()
         {
+
+            // creez o lista <SelectListItem> pentru a popula dropdown-ul cu denumirea produselor introduse in baza de date
+            ProductRepository p = new ProductRepository();
+            var listaProduse = p.List();
+            List<SelectListItem> dropdownProduse = new List<SelectListItem>();
+            foreach (var item in listaProduse)
+            {
+                dropdownProduse.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            }
+
+            // trimit lista spre view
+            ViewBag.Produse = dropdownProduse;
+
             return View();
         }
 
