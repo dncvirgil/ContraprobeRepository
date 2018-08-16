@@ -25,38 +25,23 @@ namespace Contraprobe.Controllers
             return RedirectToAction("List");
         }
 
+        //public ActionResult List()
+        //{
+        //    ProductRepository p = new ProductRepository();
+        //    List<ProductModel> listaProduse = p.List();
+        //    return View(listaProduse);
+        //}
 
-        public ActionResult List()
+
+        public ActionResult List(int page = 1)
         {
+            int pageSize = 10;
+            int pageNumber = page;
             ProductRepository p = new ProductRepository();
             List<ProductModel> listaProduse = p.List();
-            return View(listaProduse);
+            var model = listaProduse.ToPagedList(pageNumber, pageSize);
+            return View(model);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

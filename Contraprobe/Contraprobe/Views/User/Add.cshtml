@@ -43,7 +43,7 @@
                     new SelectListItem{ Text="Productie", Value = "Productie" },
                     new SelectListItem{ Text="Controlul calitatii", Value = "Controlul calitatii" },
                     new SelectListItem{ Text="Asigurarea calitatii", Value = "Asigurarea calitatii" }
-                 },
+                 }, "-----Selecteaza departament-----",
                  new { @class = "btn btn-default dropdown-toggle col-md-10" }) @*clasa luata de pe bootstrap*@
                 @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
             </div>

@@ -1,9 +1,11 @@
-﻿@model IEnumerable<Contraprobe.Models.UserModel>
+﻿@*@model IEnumerable<Contraprobe.Models.UserModel>*@
+@using PagedList.Mvc
+@model PagedList.IPagedList<Contraprobe.Models.UserModel>  
 
 @{
     ViewBag.Title = "List";
 }
-
+ <link href="~/Content/PagedList.css" rel="stylesheet" />  
 <h2>Lista utilizatori</h2>
 
 <p>
@@ -12,25 +14,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Department)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Department)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Password)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ConfirmPassword)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ConfirmPassword)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsAdministrator)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().IsAdministrator)
         </th>
 
         <th>
@@ -71,3 +73,8 @@
 }
 
 </table>
+
+<div id="pager">
+    <p> Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) din @Model.PageCount</p>
+    @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+</div>

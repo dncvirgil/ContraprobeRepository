@@ -22,7 +22,7 @@
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Product, new { htmlAttributes = new { @class = "form-control" } })*@
 
-                @Html.DropDownListFor(model => model.Product, listaProduse, new { @class = "btn btn-default dropdown-toggle col-md-10" }) @*clasa luata de pe bootstrap*@
+                @Html.DropDownListFor(model => model.Product, listaProduse, "----Selecteaza produs-----", new { @class = "btn btn-default dropdown-toggle col-md-10" }) @*clasa luata de pe bootstrap*@
                 @Html.ValidationMessageFor(model => model.Product, "", new { @class = "text-danger" })
             </div>
         </div>

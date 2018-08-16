@@ -12,7 +12,7 @@ namespace Contraprobe.Models
 
         [Required(ErrorMessage = "Produsul este obligatorie")]
         [Display(Name ="Produs")]
-        public ProductModel Product { get; set; }
+        public string Product { get; set; }
 
         [Required(ErrorMessage = "Seria produsului este obligatorie")]
         [Display(Name = "Serie produs")]

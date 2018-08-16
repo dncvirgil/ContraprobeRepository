@@ -1,9 +1,11 @@
-﻿@model IEnumerable<Contraprobe.Models.ProductModel>
+﻿@*@model IEnumerable<Contraprobe.Models.ProductModel>*@
+@using PagedList.Mvc
+@model PagedList.IPagedList<Contraprobe.Models.ProductModel> 
 
 @{
     ViewBag.Title = "List";
 }
-
+<link href="~/Content/PagedList.css" rel="stylesheet" /> 
 <h2>Lista produse</h2>
 
 <p>
@@ -12,16 +14,16 @@
 <table class="table table-hover">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Packaging)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Packaging)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
             </th>
 
             <th>
@@ -54,3 +56,8 @@
         }
     </tbody>
 </table>
+
+<div id="pager">
+    <p> Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) din @Model.PageCount</p>
+    @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+</div>

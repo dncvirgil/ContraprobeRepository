@@ -30,7 +30,7 @@
                     new SelectListItem{ Text="Injectabil", Value = "Injectabil" },
                     new SelectListItem{ Text="Tablete", Value = "Tablete" },
                     new SelectListItem{ Text="Capsule", Value = "Capsule" }
-                 },
+                 }, "---Tip produs---",
                  new { @class = "btn btn-default dropdown-toggle col-md-10" }) @*clasa luata de pe bootstrap*@
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
@@ -55,7 +55,7 @@
                     new SelectListItem{ Text="Flacon", Value = "Flacon" },
                     new SelectListItem{ Text="Plic", Value = "Plic" },
                     new SelectListItem{ Text="Fiole", Value = "Fiole" }
-                 },
+                 },"---Mod de ambalare---",
                  new { @class = "btn btn-default dropdown-toggle col-md-10" }) @*clasa luata de pe bootstrap*@
                 @Html.ValidationMessageFor(model => model.Packaging, "", new { @class = "text-danger" })
             </div>

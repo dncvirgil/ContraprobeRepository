@@ -1,5 +1,6 @@
 ﻿using Contraprobe.Models;
 using Microsoft.AspNet.Identity.Owin;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,10 +75,24 @@ namespace Contraprobe.Controllers
             return RedirectToAction("List");
         }
 
-        public ActionResult List()
+
+        //public ActionResult List()
+        //{
+        //    UserRepository u = new UserRepository();
+        //    return View(u.GetAll());
+        //}
+
+
+
+        //https://www.c-sharpcorner.com/blogs/simple-paging-in-mvc
+        public ActionResult List(int page = 1)
         {
+            int pageSize = 10;
+            int pageNumber = page;
             UserRepository u = new UserRepository();
-            return View(u.GetAll());
+            var model = u.GetAll().ToPagedList(pageNumber, pageSize);
+
+            return View(model);
         }
 
         public ActionResult Delete(int id)

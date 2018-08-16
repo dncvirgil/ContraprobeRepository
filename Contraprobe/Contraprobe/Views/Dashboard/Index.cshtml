@@ -1,35 +1,52 @@
-﻿@model IEnumerable<Contraprobe.Models.SampleModel>
+﻿@*@model IEnumerable<Contraprobe.Models.SampleModel>*@
+@using PagedList.Mvc
+@model PagedList.IPagedList<Contraprobe.Models.SampleModel> 
 
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" /> 
+    <h2>Dashboard</h2>
 
-<h2>Dashboard</h2>
 
-<div position fixed; height 50%;>
-    <table class="table">
+<div @*style="position:fixed; height:50%;"*@>
+
+    @using (Html.BeginForm("Search", "Dashboard", FormMethod.Post))
+            {
+        <p>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Product): @Html.TextBox("Product")
+
+
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Series): @Html.TextBox("Series")
+
+
+            <input class="btn btn-default" type="submit" value="Cauta" />
+        </p>
+    }
+    </p>   
+     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Product)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Product)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Series)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Series)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductionDate)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ProductionDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExpiryDate)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ExpiryDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Amount)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Amount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Location)
             </th>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
             </th>
             <th>
                 <p>Actiuni</p>
@@ -41,6 +58,9 @@
         @foreach (var item in Model)
             {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Series)
                 </td>
@@ -60,76 +80,102 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
                 </td>
             </tr>
         }
 
     </table>
+
+    <div id="pager">
+        <p> Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) din @Model.PageCount</p>
+        @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+    </div>
+
 </div>
-<hr>
-<div position fixed; height 50%;>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Product)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Series)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductionDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExpiryDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                <p>Actiuni</p>
-            </th>
+<hr style="border:1px solid indianred">
 
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-            {
+
+
+<div @*style="position:fixed; height:50%;"*@>
+    <p>
+
+        @using (Html.BeginForm("Serach", "Sample", FormMethod.Get))
+        {
+        <p>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Product): @Html.TextBox("serialNumber")
+
+
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Series): @Html.TextBox("serialNumber")
+            <input class="btn btn-default" type="submit" value="Cauta" />
+        </p>
+        }
+        </p>
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Series)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductionDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExpiryDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Product)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Series)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ProductionDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ExpiryDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
+                </th>
+                <th>
+                    <p>Actiuni</p>
+                </th>
 
-    </table>
-</div>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Series)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductionDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpiryDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                    </td>
+                </tr>
+            }
+
+        </table>
+    <div id="pager">
+        <p> Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) din @Model.PageCount</p>
+        @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+    </div>
+    </div>
 

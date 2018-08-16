@@ -1,8 +1,12 @@
-﻿@model IEnumerable<Contraprobe.Models.SampleModel>
+﻿@*@model IEnumerable<Contraprobe.Models.SampleModel>*@
+@using PagedList.Mvc
+@model PagedList.IPagedList<Contraprobe.Models.SampleModel> 
+
 
 @{
     ViewBag.Title = "Lista produse";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" /> 
 
 <h2>Lista produse</h2>
 
@@ -12,23 +16,23 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Product)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Product)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Series)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Series)
         </th>
         @*type*@
         <th>
-            @Html.DisplayNameFor(model => model.ProductionDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ProductionDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ExpiryDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ExpiryDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Location)
         </th>
         <th>Actiuni</th>
     </tr>
@@ -65,3 +69,8 @@
 }
 
 </table>
+
+<div id="pager">
+    <p> Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) din @Model.PageCount</p>
+    @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+</div>

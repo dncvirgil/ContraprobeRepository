@@ -1,4 +1,5 @@
 ﻿using Contraprobe.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,13 @@ namespace Contraprobe.Controllers
         // GET: Drug
         public ActionResult Add()
         {
-
-            // creez o lista <SelectListItem> pentru a popula dropdown-ul cu denumirea produselor introduse in baza de date
+            // creez o lista <SelectListItem> pentru a popula dropdown-ul cu denumirea produselor din baza de date
             ProductRepository p = new ProductRepository();
             var listaProduse = p.List();
             List<SelectListItem> dropdownProduse = new List<SelectListItem>();
             foreach (var item in listaProduse)
             {
-                dropdownProduse.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+                dropdownProduse.Add(new SelectListItem { Value = item.Name, Text = item.Name});
             }
 
             // trimit lista spre view
@@ -36,10 +36,14 @@ namespace Contraprobe.Controllers
             return RedirectToAction("List");
         }
 
-        public ActionResult List()
+        public ActionResult List(int page = 1)
         {
+            int pageSize = 10;
+            int pageNumber = page;
             SampleRepository r = new SampleRepository();
-            return View(r.GetAll());
+            var sampleList = r.GetAll();
+            var model = sampleList.ToPagedList(pageNumber, pageSize);
+            return View(model);
         }
 
         public ActionResult Delete (int id)
